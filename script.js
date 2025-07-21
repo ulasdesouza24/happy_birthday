@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Geri Sayım Sayacı
-    const countDownDate = new Date("Jul 21, 2025 20:45:00").getTime();
+    const countDownDate = new Date("Jul 22, 2025 00:00:00").getTime();
     const revealOverlay = document.getElementById('reveal-overlay');
     const countdownElement = document.getElementById("countdown");
 
