@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İyi ki Doğdun!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="reveal-overlay"></div>
+    <div id="floating-images-container"></div>
+    <div class="container">
+        <h1>İyi ki Doğdun Güzelim!</h1>
+        <div id="countdown"></div>
+        <p class="message">Bugün senin günün ve ben dünyanın en şanslı insanıyım çünkü sen varsın. Şimdiden hayatıma katacağın her şey için teşekkür ederim.</p>
+        <div class="buttons-container">
+            <a href="https://www.youtube.com/watch?v=c14qMbmP9eg&list=RDc14qMbmP9eg&start_radio=1" target="_blank" class="button">Şarkımız Başlasın 🎵</a>
+            <button id="specialButton" class="button">Sana bir sürprizim var!</button>
+        </div>
+        <div class="hidden-message" id="hiddenMessage">
+            <h2 id="left-text">İYİ Kİ VARSIN!</h2>
+            <img id="jujutsu-image" src="jujutsu.jpg" alt="Sürpriz!">
+            <p id="right-text">Birlikte nice mutlu yıllara...</p>
+        </div>
+    </div>
+    <canvas id="confetti"></canvas>
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

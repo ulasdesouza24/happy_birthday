@@ -1,0 +1,259 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: #fce4ec;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+    overflow: hidden; /* Uçan resimlerin taşmasını engelle */
+}
+
+#floating-images-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1; /* İçeriğin arkasında kalması için */
+}
+
+.floating-image {
+    position: absolute;
+    width: 100px; /* Resim boyutunu ayarlayabilirsin */
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    animation: float 20s linear infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) translateX(var(--x-start)) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-100%) translateX(var(--x-end)) rotate(720deg);
+    }
+}
+
+
+.container {
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    max-width: 500px;
+    z-index: 1; /* Ana içeriğin önde olmasını sağla */
+}
+
+#reveal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease-out;
+}
+
+/* Sayfa içeriğini başlangıçta gizle */
+.container, #floating-images-container {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 1s, opacity 1s;
+}
+
+/* Sayfa içeriği ortaya çıktığında */
+body.revealed .container,
+body.revealed #floating-images-container {
+    visibility: visible;
+    opacity: 1;
+}
+
+body.revealed #reveal-overlay {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#countdown {
+    font-size: 1.5em;
+    color: #fff; /* Siyah ekran üzerinde beyaz görünsün */
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    background: transparent; /* Arka planı şeffaf yap */
+    padding: 10px;
+    border-radius: 10px;
+    position: relative; /* Diğer stillerle çakışmaması için */
+    z-index: 201; /* Overlay'in üzerinde olması için */
+}
+
+#countdown div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#countdown span {
+    font-size: 2em;
+    font-weight: bold;
+    color: #fff; /* Siyah ekran üzerinde beyaz görünsün */
+}
+
+#countdown .label {
+    font-size: 0.5em;
+    text-transform: uppercase;
+    color: #ccc; /* Siyah ekran üzerinde açık gri görünsün */
+}
+
+h1 {
+    color: #e91e63;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.message {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.button, button {
+    background-color: #e91e63;
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none; /* a etiketi için alt çizgiyi kaldır */
+    display: inline-block; /* a etiketinin padding alabilmesi için */
+}
+
+.button:hover, button:hover {
+    background-color: #c2185b;
+}
+
+.hidden-message {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    background: #fce4ec;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.hidden-message.show {
+    display: flex;
+}
+
+#jujutsu-image {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #6a0dad; /* Jujutsu temasına uygun bir renk */
+    transform: scale(0) rotate(0deg);
+    transition: transform 1s ease-in-out;
+}
+
+#jujutsu-image.spin {
+    transform: scale(1) rotate(720deg);
+}
+
+#left-text, #right-text {
+    opacity: 0;
+    transition: opacity 1s ease-in-out 0.5s; /* Animasyon resimden sonra başlasın */
+}
+
+#left-text.slide-in {
+    opacity: 1;
+    animation: slideInFromLeft 1s forwards;
+    animation-delay: 0.5s;
+}
+
+#right-text.slide-in {
+    opacity: 1;
+    animation: slideInFromRight 1s forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes slideInFromLeft {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInFromRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.hidden-message h2 {
+    color: #6a0dad;
+}
+
+#confetti {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* Mobil Cihazlar İçin Medya Sorguları */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+        margin: 15px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    .message {
+        font-size: 1.1em;
+    }
+
+    .buttons-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .button, button {
+        width: 100%;
+        box-sizing: border-box; /* padding'in genişliği etkilememesi için */
+    }
+
+    .hidden-message {
+        flex-direction: column;
+    }
+
+    #jujutsu-image {
+        width: 180px;
+        height: 180px;
+    }
+
+    #left-text, #right-text {
+        text-align: center;
+    }
+} 
